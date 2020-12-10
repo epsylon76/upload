@@ -5,7 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = [];
         $path = 'uploads/';
 	$extensions = ['jpg', 'jpeg', 'png', 'gif'];
-		
+	    
+	if(!is_writable($path)){$errors[] = 'folder not writable';}
+	    
         $all_files = count($_FILES['files']['tmp_name']);
 
         for ($i = 0; $i < $all_files; $i++) {  
